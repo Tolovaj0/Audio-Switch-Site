@@ -7,5 +7,26 @@
     <h1>Audio Switcher</h1>
     <p>Windows audio device switcher.</p>
     <p>Under construction - be ready in few days; any  comments & suggestions send to Tolovaj0@proton.me .</p>
+
+<section class="card" id="download">
+    <h2>Download (.exe)</h2>
+    <p class="meta">Version <span data-cfg="version"></span></p>
+    <div class="row"><a class="btn primary" data-cfg-href="exeUrl" href="#">⬇ Download AudioSwitcher.exe</a></div>
+    <p class="meta" style="margin:8px 0 0">Windows x64 · Portable · No installer</p>
+    <div class="hash">
+      <span class="meta">SHA-256:7e35bb8a5e512168939dea0c93b88c2d2785e8d04eba5203499797e0f876950d</span>
+      <code id="sha" data-cfg="sha256"></code>
+      <button class="btn small" id="copy" type="button">Copy</button>
+    </div>
+    <div class="warn">
+      <strong>⚠ This app is not code-signed.</strong> This is a small hobby project and I don't have a paid code-signing certificate, so Windows SmartScreen may show a "Windows protected your PC" warning the first time you run it.
+      <ul>
+        <li>Click <strong>More info</strong>, then <strong>Run anyway</strong>.</li>
+        <li>To verify the file hasn't been tampered with, compare the SHA-256 above with the output of this PowerShell command:</li>
+      </ul>
+      <pre>Get-FileHash .\AudioSwitcher.exe -Algorithm SHA256</pre>
+      <p style="margin:10px 0 0">Don't want to trust a binary? You can build the app yourself from source (below).</p>
+    </div>
+</section>
 </body>
 </html>
