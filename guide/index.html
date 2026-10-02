@@ -1,1 +1,383 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>
+      How to Switch Audio Output on Windows 11 (Speakers ⇄ Headphones) |
+      AudioSwitch
+    </title>
+    <meta
+      name="description"
+      content="Four ways to change the audio output device in Windows 11: Quick Settings, Settings, the classic Sound panel, or one click with the free AudioSwitch tray app."
+    />
+    <link rel="canonical" href="https://audio-switch.com/guide/" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta
+      property="og:title"
+      content="How to switch audio output on Windows 11"
+    />
+    <meta
+      property="og:description"
+      content="Speakers or headphones? Four ways to change the sound output in Windows 11."
+    />
+    <meta property="og:url" content="https://audio-switch.com/guide/" />
+    <style>
+      :root {
+        --bg: #0a1224;
+        --card: #111c36;
+        --text: #e8eefc;
+        --muted: #94a3c4;
+        --accent: #4f8cff;
+        --at: #06122b;
+        --border: #22335c;
+        --wb: #2b2410;
+        --wl: #7a6320;
+        --cb: #242a32;
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      @media (prefers-color-scheme: light) {
+        :root:not([data-theme="dark"]) {
+          --bg: #eef3ff;
+          --card: #ffffff;
+          --text: #0f1b3d;
+          --muted: #4a5a80;
+          --accent: #1d4ed8;
+          --at: #ffffff;
+          --border: #d5def5;
+          --wb: #fff7e0;
+          --wl: #e8c15a;
+          --cb: #eef0f3;
+        }
+      }
+      :root[data-theme="light"] {
+        --bg: #eef3ff;
+        --card: #ffffff;
+        --text: #0f1b3d;
+        --muted: #4a5a80;
+        --accent: #1d4ed8;
+        --at: #ffffff;
+        --border: #d5def5;
+        --wb: #fff7e0;
+        --wl: #e8c15a;
+        --cb: #eef0f3;
+      }
+      html {
+        scroll-padding-top: env(safe-area-inset-top, 0px);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font:
+          16px/1.6 system-ui,
+          -apple-system,
+          "Segoe UI",
+          sans-serif;
+      }
+      a {
+        color: var(--accent);
+      }
+      .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 16px 20px;
+      }
+      .top nav {
+        display: flex;
+        gap: 16px;
+      }
+      .top nav a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.95rem;
+      }
+      main {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 12px 20px 56px;
+      }
+      h1 {
+        font-size: 2.4rem;
+        margin: 0 0 8px;
+        line-height: 1.15;
+      }
+      h2 {
+        font-size: 1.2rem;
+        margin: 0 0 8px;
+      }
+      .lead {
+        color: var(--muted);
+        font-size: 1.1rem;
+        margin: 0 0 18px;
+      }
+      .hero {
+        padding: 28px 0 20px;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 22px;
+        margin-bottom: 18px;
+      }
+      .btn {
+        display: inline-block;
+        padding: 10px 18px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: var(--card);
+        color: var(--text);
+        text-decoration: none;
+        font-weight: 600;
+        cursor: pointer;
+        font: inherit;
+        font-weight: 600;
+      }
+      .btn.primary {
+        background: var(--accent);
+        color: var(--at);
+        border-color: var(--accent);
+      }
+      .btn.small {
+        padding: 3px 10px;
+        font-size: 0.85rem;
+      }
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 12px;
+      }
+      .meta {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 14px;
+        margin: 8px 0 18px;
+      }
+      .steps .card {
+        margin: 0;
+      }
+      .steps b {
+        display: block;
+        margin-bottom: 4px;
+      }
+      .warn {
+        background: var(--wb);
+        border: 1px solid var(--wl);
+        border-radius: 10px;
+        padding: 14px 16px;
+        margin-top: 14px;
+        font-size: 0.95rem;
+      }
+      code,
+      pre {
+        background: var(--cb);
+        border-radius: 6px;
+        font-family: ui-monospace, Consolas, monospace;
+        font-size: 0.86rem;
+      }
+      code {
+        padding: 2px 6px;
+        word-break: break-all;
+      }
+      pre {
+        padding: 12px;
+        overflow-x: auto;
+        margin: 10px 0 0;
+      }
+      ul {
+        padding-left: 20px;
+        margin: 8px 0 0;
+      }
+      .hash {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        margin-top: 10px;
+        flex-wrap: wrap;
+      }
+      .hash code {
+        flex: 1;
+        min-width: 0;
+      }
+      .tray {
+        display: none;
+      }
+      .split {
+        display: block;
+      }
+      footer {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 20px 32px;
+      }
+      .g {
+        max-width: 760px;
+      }
+      .g h1 {
+        font-size: 2rem;
+      }
+      .g h2 {
+        font-size: 1.3rem;
+        margin: 32px 0 8px;
+      }
+      .g h3 {
+        font-size: 1.05rem;
+        margin: 22px 0 4px;
+      }
+      .g p,
+      .g li {
+        margin: 0 0 10px;
+      }
+      .g ol {
+        padding-left: 22px;
+        margin: 0 0 10px;
+      }
+      kbd {
+        background: var(--cb);
+        border: 1px solid var(--border);
+        border-bottom-width: 2px;
+        border-radius: 5px;
+        padding: 1px 6px;
+        font:
+          0.85em ui-monospace,
+          Consolas,
+          monospace;
+      }
+      .cta {
+        margin-top: 28px;
+        text-align: center;
+      }
+      .cta .row {
+        justify-content: center;
+      }
+      .top a.brand {
+        color: inherit;
+        text-decoration: none;
+      }
+      footer {
+        max-width: 760px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="top" style="max-width: 760px">
+      <a class="brand" href="/"><b>🔊 AudioSwitch</b></a>
+      <nav><a href="/">Home</a><a href="/#download">Download</a></nav>
+    </header>
+    <main class="g">
+      <h1>How to switch audio output on Windows 11</h1>
+      <p class="lead">
+        Speakers, headphones, a monitor or a soundbar: here are four ways to
+        change the sound output device in Windows 11, from the built-in options
+        to a one-click shortcut.
+      </p>
+      <h2>1. Quick Settings (fastest built-in way)</h2>
+      <ol>
+        <li>
+          Press <kbd>Win</kbd> + <kbd>A</kbd>, or click the sound and network
+          icons on the right of the taskbar.
+        </li>
+        <li>Click the arrow next to the volume slider.</li>
+        <li>Select your device from the list.</li>
+      </ol>
+      <h2>2. Windows Settings</h2>
+      <ol>
+        <li>Open <b>Start → Settings → System → Sound</b>.</li>
+        <li>Under <b>Output</b>, select the device you want to use.</li>
+      </ol>
+      <p>You can also set the volume of each device here.</p>
+      <h2>3. The classic Sound panel</h2>
+      <ol>
+        <li>
+          Press <kbd>Win</kbd> + <kbd>R</kbd>, type <code>mmsys.cpl</code> and
+          press Enter.
+        </li>
+        <li>On the <b>Playback</b> tab, right-click the device you want.</li>
+        <li>Choose <b>Set as Default Device</b>.</li>
+      </ol>
+      <h2>4. One click with AudioSwitch</h2>
+      <p>
+        If you switch between the same two devices every day, for example
+        speakers and headphones, the steps above get tedious.
+        <a href="/">AudioSwitch</a> is a tiny, free tray app: pick your two
+        devices once, then <b>left-click</b> the tray icon to switch. The icon
+        shows which device is active.
+      </p>
+      <div class="cta">
+        <div class="row">
+          <a class="btn primary" href="/#download">Download AudioSwitch</a>
+        </div>
+        <p class="meta" style="margin-top: 8px">
+          Windows x64 · Portable · No installer
+        </p>
+      </div>
+      <h2>Frequently asked questions</h2>
+      <h3>How do I switch between speakers and headphones in Windows 11?</h3>
+      <p>
+        Use Quick Settings (<kbd>Win</kbd> + <kbd>A</kbd>) and choose the device
+        in the sound output list, or use AudioSwitch to toggle between two
+        devices with a single click.
+      </p>
+      <h3>How do I change the default audio output device in Windows 11?</h3>
+      <p>
+        Go to <b>Settings → System → Sound</b> and select a device under
+        <b>Output</b>. Alternatively, open <code>mmsys.cpl</code> and use
+        <b>Set as Default Device</b>.
+      </p>
+      <h3>Why does Windows not switch to my headphones automatically?</h3>
+      <p>
+        That depends on the device, the driver and whether the headphones were
+        already connected. If Windows keeps the old output, pick the device
+        manually using one of the methods above.
+      </p>
+      <h3>Is AudioSwitch safe?</h3>
+      <p>
+        AudioSwitch is free and open source. The executable is not code-signed,
+        so Windows SmartScreen may show a warning on first run. You can verify
+        the file with the SHA-256 checksum on the
+        <a href="/#download">download section</a>, check the VirusTotal report,
+        or build the app yourself from the
+        <a href="https://github.com/Tolovaj0/Audio-Switch">source code</a>.
+      </p>
+      <h3>Does AudioSwitch work on Windows 10?</h3>
+      <p>
+        AudioSwitch is built for Windows 11 and will likely work on Windows 10
+        as well, but Windows 10 already has a faster built-in output menu on the
+        taskbar.
+      </p>
+      <h3>Do I need to install it?</h3>
+      <p>
+        No. It is a single portable executable with no installer and no .NET
+        installation required.
+      </p>
+    </main>
+    <footer class="meta">
+      © <span id="yr"></span> AudioSwitch · <a href="/">Home</a> ·
+      <a href="https://github.com/Tolovaj0/Audio-Switch">Source</a>
+    </footer>
+    <script>
+      document.getElementById("yr").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
 
