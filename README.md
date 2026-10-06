@@ -4,7 +4,7 @@
 
 Simple Windows 11 tray utility for quickly switching between TWO audio output devices.
 
-AudioSwitch is designed to make switching between speakers, headphones, monitors, soundbars and other playback devices quick and easy.
+Audio-Switch is designed to make switching between speakers, headphones, monitors, soundbars and other playback devices quick and easy.
 
 ## Features
 - 🔊 Switch between two configured audio output devices
@@ -23,7 +23,7 @@ After configuration:
 	-**Switch device** 
 - **Settings** 		→ change the configured devices
 - **Start with Windows** 	→ enable or disable automatic startup
-- **Exit** 			→ close AudioSwitch
+- **Exit** 			→ close Audio-Switch
 	
 ## Requirements
 - Windows 11 or Windows 10
@@ -32,7 +32,7 @@ After configuration:
 The published version is distributed as a self-contained application, so users do not need to install .NET separately.
 
 ## Configuration
-AudioSwitch stores the selected device IDs and icon preferences in the user's application data directory.
+Audio-Switch stores the selected device IDs and icon preferences in the user's application data directory.
 
 ## Building from source
 Clone the repository and open the project in VS Code or another .NET-compatible editor.
