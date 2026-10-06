@@ -42,5 +42,6 @@ dotnet build
 dotnet run
 
 •	## Download — https://github.com/Tolovaj0/Audio-Switch/releases/download/Release-1.1/AudioSwitch.exe
+•	## Buy Me a Coffee — https://ko-fi.com/tolovaj0
 •	## License —MIT  [link to the LICENSE file](https://github.com/Tolovaj0/Audio-Switch?tab=MIT-1-ov-file#)
 
